@@ -2,13 +2,15 @@
 name = "testtask"
 version = "0.1.0"
 description = ""
-authors = ["Ivan20010620 <spirittime999@mail.ru>"]
+authors = ["IKLASHKOV <yato252@mail.ru>"]
 readme = "README.md"
 
 [tool.poetry.dependencies]
 python = "^3.11"
 fastapi = "^0.114.0"
 sqlalchemy = "^2.0.34"
+uvicorn = "^0.30.6"
+pymysql = "^1.1.1"
 
 
 [build-system]

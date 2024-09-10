@@ -2,7 +2,8 @@ from fastapi import FastAPI, Depends, HTTPException
 from sqlalchemy import asc, desc
 from sqlalchemy.orm import Session
 from sqlalchemy.sql import distinct
-from database import  Product, ProductCreate, get_db
+from database import Product, ProductCreate, get_db
+import uvicorn
 
 app = FastAPI()
 
@@ -83,6 +84,4 @@ def delete_product(product_id: int, db: Session = Depends(get_db)):
 
 
 if __name__ == "__main__":
-    import uvicorn
-
     uvicorn.run(app, host="127.0.0.1", port=8000)
