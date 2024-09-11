@@ -7,7 +7,6 @@ import uvicorn
 
 app = FastAPI()
 
-
 @app.post("/products/")
 def create_product(product: ProductCreate, db: Session = Depends(get_db)):
     db_product = Product(name=product.name, price=product.price, category=product.category)
@@ -28,8 +27,6 @@ def read_products(
         db: Session = Depends(get_db)
 ):
     query = db.query(Product)
-
-
     if name:
         query = query.filter(Product.name.like(f"%{name}%"))
     if min_price is not None:
@@ -43,7 +40,6 @@ def read_products(
         query = query.order_by(asc(getattr(Product, sort_by)))
     else:
         query = query.order_by(desc(getattr(Product, sort_by)))
-
     return query.all()
 
 
