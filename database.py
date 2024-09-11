@@ -1,9 +1,8 @@
-from sqlalchemy import create_engine, Column, Integer, String, Float, asc, desc
+from sqlalchemy import create_engine, Column, Integer, String, Float
 from sqlalchemy.ext.declarative import declarative_base
 from sqlalchemy.orm import sessionmaker
 from settings import USER_LOGIN, USER_PASSWORD, DB_HOST,DB_NAME
-
-
+from pydantic import BaseModel
 
 DATABASE_URL = f"mysql+pymysql://{USER_LOGIN}:{USER_PASSWORD}@{DB_HOST}/{DB_NAME}"
 
@@ -29,9 +28,6 @@ def get_db():
         yield db
     finally:
         db.close()
-
-
-from pydantic import BaseModel
 
 
 class ProductCreate(BaseModel):
