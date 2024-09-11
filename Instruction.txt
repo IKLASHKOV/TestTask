@@ -1,0 +1,27 @@
+1.Установка и настройка базы данных
+
+	1) Установите пакет docker командой:
+	 apt update
+     apt install docker.io
+     systemctl start docker
+     systemctl enable docker
+    2) Запустить контейнер базы данных:
+     docker run --name mariadb-container -e MYSQL_ROOT_PASSWORD=sirius25 -p 3306:3306 -d mariadb:latest
+    3) Войти в контейнер с паролем:
+     docker exec -it mariadb-container mariadb -u root -p
+	4) Создайте базу данных main командой:                                  CREATE DATABASE main;
+	                                                                        GRANT ALL PRIVILEGES ON main.* TO 'root'@'%';
+	                                                                        FLUSH PRIVILEGES;
+                                                                            QUIT;
+2.Подготовка проекта к запуску
+    1) Скачать репозиторий с github командой:                               git clone https://github.com/IKLASHKOV/TestTask.git
+    2) Перейдите в папку TestTask, создайте файл settings.py со следующим содержимым:
+USER_LOGIN = "root"
+USER_PASSWORD = "sirius25"
+DB_NAME = "main"
+DB_HOST = "localhost"
+    3) Установите пакет poetry с помощью следующей команды:                 pip install poetry
+    4) Установите все необходимые библиотеки с помощью следующей команды:   poetry install
+    5) Проверьте работо способность программы с помощью следующей команды:  poetry run python main.py
+
+3.Для запуска тестов используйте следующую команду:                         poetry run pytest tests/tests.py
