@@ -25,3 +25,30 @@ DB_HOST = "localhost"
     5) Проверьте работо способность программы с помощью следующей команды:  poetry run python main.py
 
 3.Для запуска тестов используйте следующую команду:                         poetry run pytest tests/tests.py
+
+Примеры запросов:
+curl --location 'http://127.0.0.1:8000/products/?name=milk&min_price=1&max_price=1500&sort_by=price&sort_order=asc%22'
+
+curl --location 'http://127.0.0.1:8000/products/' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name": "черный хлеб",
+    "price": 50.99,
+    "category": "еда"
+}'
+
+curl --location 'http://127.0.0.1:8000/products/'
+
+curl --location 'http://127.0.0.1:8000/products/3'
+
+curl --location --request PUT 'http://127.0.0.1:8000/products/3' \
+--header 'Content-Type: application/json' \
+--data '{
+    "name": "Laptop",
+    "price": 1140,
+    "category": "electronics"
+}'
+
+curl --location --request DELETE 'http://127.0.0.1:8000/products/1'
+
+curl --location 'http://127.0.0.1:8000/categories/'
